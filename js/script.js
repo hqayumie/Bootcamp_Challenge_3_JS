@@ -1,4 +1,5 @@
 // Assignment Code
+console.log("hello")
 var generateBtn = document.querySelector("#generate");
 
 // possible character choices
@@ -20,24 +21,32 @@ function generatePassword() {
   let upper = confirm('Click OK if you would like to use upper case letters');
   let numeric = confirm('Clikc OK if you would like to use numbers');
   let symbols = confirm('Click OK if you would like to use special characters i.e. (!, $, @, %, etc.)');
-
+// with these if statements the variables for "selected" start to tie together all of the characters from each selected category
   if (lower) {
     selected.concat(lower)
   }
+  console.log(selected)
   if (upper) {
     selected.concat(upper)
   }
+  console.log(selected)
   if (numeric) {
     selected.concat(numeric)
   }
+  console.log(selected)
+  
+  //this combines all of the array items into a new array
+  selected.push( lowercaseChar, uppercaseChar, numericChar, specialChar)
+  console.log ('selected =' +selected);
 
-function writePassword (){
-  let lower = confirm ('Click OK if you would like to use lower case letters');
-  let upper = confirm ('Click OK if you would like to use upper case letters');
-  if (lower == true){
-    upper;
+  let finalPassword = []
+
+  for (var i=0; i <passwordlength; i++){
+    let randomIndex=Math.floor (Math.random () * selected.length);
+    finalPassword.push (selected[randomIndex]);
   }
-}
+  return finalPassword.join ('');
+  
 
 // Write password to the #password input
 function writePassword() {
@@ -48,6 +57,7 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+
 }
+//Add event listener to generate button
+generateBtn.addEventListener("click", generatePassword);
